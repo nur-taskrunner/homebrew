@@ -6,11 +6,11 @@
 class Nur < Formula
   desc "Task runner based on nu shell"
   homepage "https://github.com/nur-taskrunner/nur"
-  url "https://github.com/nur-taskrunner/nur/archive/refs/tags/v0.14.1.tar.gz"
-  sha256 "e04cc664845263ad9f0b6a18c26874856ae2a9b5722daaf2d028e96a7edf2ae3"
+  url "https://github.com/nur-taskrunner/nur/archive/refs/tags/v0.15.0.tar.gz"
+  sha256 "837f50c64f3f49071c936d17775abc707baf434279221b85d4335e117db3da34"
   license "MIT"
   head "https://github.com/nur-taskrunner/nur.git", branch: "main"
-  version "0.14.1"
+  version "0.15.0"
 
   livecheck do
     url :stable
@@ -34,6 +34,6 @@ class Nur < Formula
   end
 
   test do
-    assert_match "0.14.1+0.102.0", pipe_output("#{bin}/nur --version", nil)
+    assert_match "0.15.0+0.103.0", pipe_output("#{bin}/nur --version", nil)
   end
 end
