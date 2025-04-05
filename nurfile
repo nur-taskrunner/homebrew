@@ -8,6 +8,7 @@ def "nur release" [
     version: string
 ] {
     let main_version = if ("+" in $version) {$version | split row "+" | get 0} else {$version}
+    print $"Calculating hash for nur (ansi purple)($version)(ansi reset) files"
     let url = $'https://github.com/nur-taskrunner/nur/archive/refs/tags/v($main_version).tar.gz'
     let hash = (
         http get --raw $url
@@ -17,6 +18,8 @@ def "nur release" [
         | first
     )
 
+    print ""
+    print $"Rendering template for Formula/nur.rb using version (ansi purple)($main_version)(ansi reset)"
     let warning = ({} | render-tpl "templates/warning.template")
     let formula = (
         {
@@ -30,4 +33,12 @@ def "nur release" [
     )
 
     [$warning, $formula] | str join (char nl) | save -f "Formula/nur.rb"
+
+    print ""
+    print $"Creating release commit '(ansi purple)nur ($main_version)(ansi reset)'"
+    git add Formula/nur.rb
+    git commit -m $"nur ($main_version)"
+
+    print ""
+    print $"(ansi yellow)Don't forget to push last commit!(ansi reset)"
 }
