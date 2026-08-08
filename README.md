@@ -9,5 +9,6 @@ See https://github.com/nur-taskrunner/nur for details.
 ```shell
 > brew tap nur-taskrunner/homebrew https://github.com/nur-taskrunner/homebrew.git
 > brew update
+> brew trust nur-taskrunner/homebrew
 > brew install nur
 ```
